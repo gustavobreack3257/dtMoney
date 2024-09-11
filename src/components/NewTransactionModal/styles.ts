@@ -102,7 +102,7 @@ export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButt
         background: ${props => props.theme["gray-600"]};
     }
 
-    &[data-state='unchecked'] {
+    &[data-state='checked'] {
         color: ${props => props.theme.white};
         background: ${props => props.variant === 'income' ? props.theme["green-500"]: props.theme["red-500"]};
 
