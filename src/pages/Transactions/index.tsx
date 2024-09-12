@@ -1,13 +1,15 @@
 import { useContext } from "react";
+
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "./components/SearchForm";
 
 import * as S from "./styles";
 import { TransactionsContext } from "../../context/TransactionsContext";
+import { dateFormatter, priceFormatter } from "../../utils/formatter";
 
 export function Transactions() {
-  const { transactions } = useContext(TransactionsContext)
+  const { transactions } = useContext(TransactionsContext);
 
   return (
     <div>
@@ -25,11 +27,12 @@ export function Transactions() {
                   <td width="50%">{transaction.description}</td>
                   <td>
                     <S.PriceHighLight variant={transaction.type}>
-                      {transaction.price}
+                      {transaction.type === "outcome" && "- "}
+                      {priceFormatter.format(transaction.price)}
                     </S.PriceHighLight>
                   </td>
                   <td>{transaction.category}</td>
-                  <td>{transaction.createdAt}</td>
+                  <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
                 </tr>
               );
             })}
